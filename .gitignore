@@ -24,3 +24,7 @@ env/
 # Ignore package build directories
 dist/
 build/
+
+
+# Ignore db files
+*.db
