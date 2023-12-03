@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "URL Checker",
+    "version": "1.0",
+    "permissions": [
+        "tabs",
+        "scripting"
+    ],
+    "host_permissions": [
+        "*://*/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
