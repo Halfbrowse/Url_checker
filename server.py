@@ -50,19 +50,32 @@ def check_url():
         "Douyin",
     ]
 
+    additional_columns = "Summary, Attribution_confidence"
     url_exists = False
+    summary = ""
+    attribution_confidence = ""
     for column in columns:
-        query = f"SELECT {column} FROM Entities WHERE {column} = ?"
-        print("Checking column:", column)  # Print the column being checked
+        query = (
+            f"SELECT {column}, {additional_columns} FROM Entities WHERE {column} = ?"
+        )
         c.execute(query, (url_to_check,))
         result = c.fetchone()
-        print("Result for", column, ":", result)  # Print the result for each column
         if result:
             url_exists = True
+            summary, attribution_confidence = result[1], result[2]
             break
 
     conn.close()
-    return jsonify({"exists": url_exists}), 200
+    return (
+        jsonify(
+            {
+                "exists": url_exists,
+                "summary": summary,
+                "attribution_confidence": attribution_confidence,
+            }
+        ),
+        200,
+    )
 
 
 if __name__ == "__main__":

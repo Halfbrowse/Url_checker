@@ -12,17 +12,18 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         .then(response => response.json())
         .then(data => {
             if (data.exists) {
+                let message = `This site is ${data.summary} and has an attribution confidence level of ${data.attribution_confidence}`;
                 chrome.scripting.executeScript({
                     target: { tabId: tabId },
                     func: displayMessage,
-                    args: ["URL Found in Database"]
+                    args: [message]
                 });
             } 
         })
         .catch(error => {
             console.error('Error:', error);
         });
-  }
+}
   
   function displayMessage(message) {
     alert(message);
