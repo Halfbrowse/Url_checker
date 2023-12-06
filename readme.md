@@ -12,19 +12,23 @@ Clone this repository to your local machine using `git clone https://github.com/
 
 ### Environment Setup
 
-CD into the repo and run $ python -m venv venv on windows or $ python3 -m venv venv on linux.
+CD into the repo and run `python -m venv venv` on windows or `python3 -m venv venv` on linux.
 
-Run $ source venv/bin/activate to activate the virtual environment.
+Run `source venv/bin/activate` to activate the virtual environment on linux.
 
-Run $ pip install -r requirements.txt to install the required packages.
+Run `venv\Scripts\activate` on windows.
+
+Run `pip install -r requirements.txt` to install the required packages.
 
 ### Setting Up the Database
 
-Run $ python initialise_db.py to create the database.
+Run `python initialise_db.py` to create the database.
 
 ### Admin Panel
 
-Run $ streamlit run app.py to start the admin panel.
+Run `streamlit run app.py` to start the admin panel.
+
+The database will be empty so you will need to use the form to populate the database.
 
 If you have a csv file to upload just click/drag & drop onto the file uploader at the bottom of the page.
 
