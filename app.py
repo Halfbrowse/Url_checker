@@ -61,15 +61,17 @@ def get_entities_df_with_selection():
 
 def update_entity(id, data):
     try:
+        if not entity_exists(id):
+            st.error(f"Entity with id {id} does not exist.")
+            return
+
         with connect_db() as conn:
-            # Create a parameterized query string
-            placeholders = ", ".join([f"{col} = ?" for col in data.keys()])
-            params = list(data.values()) + [id]
-            print(placeholders)
-            # Execute the update query
-            conn.execute(f"UPDATE Entities SET {placeholders} WHERE id = ?", params)
+            placeholders = ", ".join(f"{col} = ?" for col in data)
+            conn.execute(
+                f"UPDATE Entities SET {placeholders} WHERE id = {id}",
+                list(data.values()),
+            )
             conn.commit()
-            print("Updated entity with id:", id)
     except Exception as e:
         print("Error in update_entity:", e)
 
