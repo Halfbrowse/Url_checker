@@ -12,7 +12,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         .then(response => response.json())
         .then(data => {
             if (data.exists) {
-                let message = `This site is ${data.summary} Attribution confidence level (1-5): ${data.attribution_confidence}.`;
+                let message = `This site is ${data.summary}Attribution confidence level (1-5): ${data.attribution_confidence}.`;
                 chrome.scripting.executeScript({
                     target: { tabId: tabId },
                     func: displayMessage,
